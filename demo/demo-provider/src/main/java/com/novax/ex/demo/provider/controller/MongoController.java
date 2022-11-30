@@ -56,4 +56,9 @@ public class MongoController implements MongoApi {
     public ReturnResult mongoDelete(Long id) {
         return null;
     }
+
+    @Override
+    public ReturnResult<List<MongoRepose>> page() {
+        return null;
+    }
 }
