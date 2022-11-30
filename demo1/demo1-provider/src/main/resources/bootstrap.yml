@@ -1,0 +1,41 @@
+nacos-addr: 192.168.10.226:8848
+
+spring:
+  application:
+    name: demo1
+  cloud:
+    nacos:
+      #配置中心
+      config:
+        server-addr: ${nacos-addr}
+        file-extension: properties
+        group: DEFAULT_GROUP
+        timeout: 10000
+        # 共享配置，多个配置逗号隔开，优先级：shared < ext < ${spring.application.name}-${profile}.${file-extension}
+        shared-configs: mysql-wallet.properties,redis.properties,mongodb.properties,rabbitmq.properties
+      #注册中心
+      discovery:
+        server-addr: ${nacos-addr}
+        group: DEFAULT_GROUP
+
+seata:
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      namespace: 89316679-ea11-47a5-b537-c138b3e87a97
+      server-addr: ${nacos-addr}
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      data-id: seataServer.properties
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${nacos-addr}
+      group: SEATA_GROUP
+      namespace: 89316679-ea11-47a5-b537-c138b3e87a97
+      application: seata-server
+      username: nacos
+      password: nacos
+      cluster: default
