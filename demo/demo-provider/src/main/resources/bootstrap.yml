@@ -20,6 +20,7 @@ spring:
       discovery:
         server-addr: ${nacos-addr}
         group: DEFAULT_GROUP
+    #配置Sentinel
     sentinel:
       transport:
         dashboard: 192.168.10.226:8080 #配置Sentinel dashboard地址
@@ -37,6 +38,7 @@ spring:
   elasticsearch:
     uris: 192.168.10.241:9200
 
+# seata配置
 seata:
   tx-service-group: my_test_tx_group
   config:
