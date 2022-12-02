@@ -6,8 +6,11 @@ import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.demo.open.api.RedisApi;
 import com.novax.ex.demo.open.model.request.RedisListRequest;
 import com.novax.ex.demo.open.model.request.RedisStringRequest;
+import com.novax.ex.demo.open.model.request.RedisZSetRequest;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -49,6 +52,51 @@ public class RedisController implements RedisApi {
         }
         Long size = RedisUtil.lLeftPushAll(body.getKey(), body.getValues());
         return ReturnResult.success(size);
+    }
+
+    @Override
+    public ReturnResult<List<Object>> listGet(String key) {
+        if (StrUtil.isEmpty(key)) {
+            return ReturnResult.fail("缺少key");
+        }
+        List<Object> list = RedisUtil.lRange(key, 0, -1);
+        return ReturnResult.success(list);
+    }
+
+    @Override
+    public ReturnResult<?> setAdd(RedisListRequest body) {
+        if (StrUtil.isEmpty(body.getKey())) {
+            return ReturnResult.fail("缺少key");
+        }
+        Long size = RedisUtil.sAdd(body.getKey(), body.getValues().toArray());
+        return ReturnResult.success(size);
+    }
+
+    @Override
+    public ReturnResult<Set<Object>> setGet(String key) {
+        if (StrUtil.isEmpty(key)) {
+            return ReturnResult.fail("缺少key");
+        }
+        Set<Object> set = RedisUtil.setMembers(key);
+        return ReturnResult.success(set);
+    }
+
+    @Override
+    public ReturnResult<?> zSetAdd(RedisZSetRequest body) {
+        if (StrUtil.isEmpty(body.getKey())) {
+            return ReturnResult.fail("缺少key");
+        }
+        Boolean isAdd = RedisUtil.zAdd(body.getKey(), body.getValue(), body.getScore());
+        return ReturnResult.success(isAdd);
+    }
+
+    @Override
+    public ReturnResult<Set<Object>> zSetGet(String key) {
+        if (StrUtil.isEmpty(key)) {
+            return ReturnResult.fail("缺少key");
+        }
+        Set<Object> set = RedisUtil.zRange(key, 0, -1);
+        return ReturnResult.success(set);
     }
 
     @Override
