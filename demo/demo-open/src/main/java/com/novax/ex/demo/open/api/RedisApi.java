@@ -44,10 +44,10 @@ public interface RedisApi {
     @GetMapping("/set")
     ReturnResult<Set<Object>> setGet(String key);
 
-    @Operation(summary = "set 设置内容", description = "set 设置内容")
+    @Operation(summary = "z-set 设置内容", description = "set 设置内容")
     @PostMapping("/z-set")
     ReturnResult<?> zSetAdd(@RequestBody RedisZSetRequest body);
-    @Operation(summary = "set 获取内容", description = "set 获取内容")
+    @Operation(summary = "z-set 获取内容", description = "set 获取内容")
     @GetMapping("/z-set")
     ReturnResult<Set<Object>> zSetGet(String key);
 
