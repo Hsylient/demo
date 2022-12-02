@@ -18,6 +18,16 @@ import java.util.List;
 @Repository
 public interface MongoMapper extends MongoRepository<MongoEntity, Long> {
     /**
+     $gt大于
+     $lt小于
+     $ne不等于
+     $gte大于或等于
+     $lte小于或等于
+     $inc可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。
+     $in相当于T-SQL中的in
+     $nin相当于T-SQL中的not in
+     **/
+    /**
      * 最常用的就是下面三个
      * value={} 条件
      * filed={} 返回指定字段，1 代表返回 0 带表隐藏
