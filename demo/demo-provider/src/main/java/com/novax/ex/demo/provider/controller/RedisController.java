@@ -1,15 +1,18 @@
 package com.novax.ex.demo.provider.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.novax.ex.common.core.redis.RedisUtil;
 import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.demo.open.api.RedisApi;
+import com.novax.ex.demo.open.model.request.RedisHashRequest;
 import com.novax.ex.demo.open.model.request.RedisListRequest;
 import com.novax.ex.demo.open.model.request.RedisStringRequest;
 import com.novax.ex.demo.open.model.request.RedisZSetRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -99,13 +102,24 @@ public class RedisController implements RedisApi {
         return ReturnResult.success(set);
     }
 
+    public ReturnResult<?> hashPut(RedisHashRequest body) {
+        RedisUtil.hPutAll(body.getKey(), body.getValueMap());
+        return ReturnResult.success("put hash success");
+    }
+
     @Override
-    public ReturnResult<?> delete(String key) {
-        if (StrUtil.isEmpty(key)) {
+    public ReturnResult<Map<Object, Object>> hashGet(String key) {
+        Map<Object, Object> map = RedisUtil.hGetAll(key);
+        return ReturnResult.success(map);
+    }
+
+    @Override
+    public ReturnResult<?> delete(Set<String> keys) {
+        if (CollUtil.isEmpty(keys)) {
             return ReturnResult.fail("缺少key");
         }
-        RedisUtil.delete(key);
-        return ReturnResult.success("删除成功");
+        Long size = RedisUtil.delete(keys);
+        return ReturnResult.success("删除成功, 成功条数：" + size);
     }
 
     private TimeUnit timeUnitConvert(String unit) {

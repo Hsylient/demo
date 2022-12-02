@@ -1,6 +1,7 @@
 package com.novax.ex.demo.open.api;
 
 import com.novax.ex.common.results.ReturnResult;
+import com.novax.ex.demo.open.model.request.RedisHashRequest;
 import com.novax.ex.demo.open.model.request.RedisListRequest;
 import com.novax.ex.demo.open.model.request.RedisStringRequest;
 import com.novax.ex.demo.open.model.request.RedisZSetRequest;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -44,16 +46,23 @@ public interface RedisApi {
     @GetMapping("/set")
     ReturnResult<Set<Object>> setGet(String key);
 
-    @Operation(summary = "z-set 设置内容", description = "set 设置内容")
+    @Operation(summary = "z-set 设置内容", description = "z-set 设置内容")
     @PostMapping("/z-set")
     ReturnResult<?> zSetAdd(@RequestBody RedisZSetRequest body);
-    @Operation(summary = "z-set 获取内容", description = "set 获取内容")
+    @Operation(summary = "z-set 获取内容", description = "z-set 获取内容")
     @GetMapping("/z-set")
     ReturnResult<Set<Object>> zSetGet(String key);
 
+    @Operation(summary = "hash 设置内容", description = "hash 设置内容")
+    @PostMapping("/hash")
+    ReturnResult<?> hashPut(@RequestBody RedisHashRequest body);
+    @Operation(summary = "hash 获取内容", description = "hash 获取内容")
+    @GetMapping("/hash")
+    ReturnResult<Map<Object, Object>> hashGet(String key);
+
     @Operation(summary = "通用删除方法", description = "通用删除方法")
     @DeleteMapping("/common")
-    ReturnResult<?> delete(String key);
+    ReturnResult<?> delete(Set<String> keys);
 
 
 }

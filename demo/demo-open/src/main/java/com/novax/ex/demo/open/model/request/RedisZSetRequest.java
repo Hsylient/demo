@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2022-11-30 18:58
  */
 @Data
-@Schema(description = "redis请求")
+@Schema(description = "redis请求 z-set")
 public class RedisZSetRequest {
     @Schema(description = "key")
     private String key;

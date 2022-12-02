@@ -32,8 +32,8 @@ public class RedisUtil {
 	 *
 	 * @param key 指定key
 	 */
-	public static void delete(String key) {
-		redisTemplate.delete(key);
+	public static Boolean delete(String key) {
+		return redisTemplate.delete(key);
 	}
 
 	/**
@@ -41,8 +41,8 @@ public class RedisUtil {
 	 *
 	 * @param keys 批量key
 	 */
-	public static void delete(Collection<String> keys) {
-		redisTemplate.delete(keys);
+	public static Long delete(Collection<String> keys) {
+		return redisTemplate.delete(keys);
 	}
 
 	/**

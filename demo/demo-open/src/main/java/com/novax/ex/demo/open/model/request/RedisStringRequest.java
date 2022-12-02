@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2022-11-30 18:58
  */
 @Data
-@Schema(description = "redis请求")
+@Schema(description = "redis请求 string")
 public class RedisStringRequest {
     @Schema(description = "key")
     private String key;
