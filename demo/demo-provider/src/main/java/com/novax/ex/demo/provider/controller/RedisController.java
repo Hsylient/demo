@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.novax.ex.common.core.redis.RedisUtil;
 import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.demo.open.api.RedisApi;
+import com.novax.ex.demo.open.model.request.RedisListRequest;
 import com.novax.ex.demo.open.model.request.RedisStringRequest;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,6 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 public class RedisController implements RedisApi {
-
     @Override
     public ReturnResult<?> stringSet(RedisStringRequest body) {
         String key = body.getKey();
@@ -43,8 +43,16 @@ public class RedisController implements RedisApi {
     }
 
     @Override
-    public ReturnResult<?> delete(RedisStringRequest body) {
-        String key = body.getKey();
+    public ReturnResult<?> listAdd(RedisListRequest body) {
+        if (StrUtil.isEmpty(body.getKey())) {
+            return ReturnResult.fail("缺少key");
+        }
+        Long size = RedisUtil.lLeftPushAll(body.getKey(), body.getValues());
+        return ReturnResult.success(size);
+    }
+
+    @Override
+    public ReturnResult<?> delete(String key) {
         if (StrUtil.isEmpty(key)) {
             return ReturnResult.fail("缺少key");
         }

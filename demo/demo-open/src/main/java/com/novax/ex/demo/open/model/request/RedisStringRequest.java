@@ -15,7 +15,7 @@ public class RedisStringRequest {
     private String key;
 
     @Schema(description = "value")
-    private Object value;
+    private String value;
 
     @Schema(description = "时间")
     private Long time;
