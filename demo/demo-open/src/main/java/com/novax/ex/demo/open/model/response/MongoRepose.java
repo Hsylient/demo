@@ -3,6 +3,9 @@ package com.novax.ex.demo.open.model.response;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * Description: 测试mongo
  *
@@ -16,12 +19,18 @@ public class MongoRepose {
     @Schema(description = "id")
     private Long id;
 
-    @Schema(description = "交易市场")
-    private String symbol;
+    @Schema(description = "name")
+    private String name;//搜索使用
 
-    @Schema(description = "币种")
-    private String currency;
+    @Schema(description = "sort")
+    private Integer sort;//排序使用
 
-    @Schema(description = "账户类型1:全逐仓2:平台币3:分仓")
-    private Integer type;
+    @Schema(description = "age")
+    private Integer age;//范围使用
+
+    @Schema(description = "date")
+    private Date date;//日期类型测试使用
+
+    @Schema(description = "money")
+    private BigDecimal money;//聚合测试使用
 }
