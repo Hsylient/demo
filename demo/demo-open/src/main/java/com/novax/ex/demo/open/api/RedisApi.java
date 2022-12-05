@@ -64,5 +64,7 @@ public interface RedisApi {
     @DeleteMapping("/common")
     ReturnResult<?> delete(Set<String> keys);
 
-
+    @Operation(summary = "防止重复提交（弱网环境下，或由client端发起的重复请求）", description = "防止重复提交")
+    @PostMapping("/recommit")
+    ReturnResult<?> recommit(@RequestBody RedisZSetRequest body);
 }

@@ -9,6 +9,7 @@ import com.novax.ex.demo.open.model.request.RedisHashRequest;
 import com.novax.ex.demo.open.model.request.RedisListRequest;
 import com.novax.ex.demo.open.model.request.RedisStringRequest;
 import com.novax.ex.demo.open.model.request.RedisZSetRequest;
+import com.novax.ex.demo.provider.common.interceptor.Recommit;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -141,5 +142,18 @@ public class RedisController implements RedisApi {
                 return TimeUnit.DAYS;
         }
         return TimeUnit.SECONDS;
+    }
+
+    /**
+     * @description: 使用此注解，指明一个ttl，代表的是多少秒内，不允许进行再次提交相同的数据
+     * @author: Wade
+     * @date: 12/5/22 11:40 AM
+     * @param: [body]
+     * @return: com.novax.ex.common.results.ReturnResult<?>
+     **/
+    @Recommit(ttl = 5)
+    @Override
+    public ReturnResult<?> recommit(RedisZSetRequest body) {
+        return ReturnResult.success();
     }
 }
