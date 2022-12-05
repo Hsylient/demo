@@ -67,7 +67,7 @@ public class RecommitAspect {
             String cacheKey = "RR-" + appName + "-" + m.getDeclaringClass().getName() + "." + m.getName() + "-" + md5;
             //boolean exist = redisUtil.hasKey(cacheKey);
             recommited = !redisUtil.setIfAbsent(cacheKey, "", ttl);
-            log.info("redis key:"+cacheKey);
+            //log.info("redis key:"+cacheKey);
         }catch (Exception e){
             log.error("RecommitAspect.doAround error:",e);
         }finally {
