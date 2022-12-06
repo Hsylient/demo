@@ -56,7 +56,7 @@ public interface MongoMapper extends MongoRepository<MongoEntity, Long> {
     //                                 {'age' : '3 '}
     //                               ]}")
     // 只要掌握了其中的一种之后，复杂的就是组合，拼接规则还是按照单个的那种用{},[]进行包裹，关键字当key。
-    @Query(value = "{'$and':['$or':{'name': ?0},{'age':?1}]}")
+    @Query(value = "{'$and':[{'$or':{'name': ?0}},{'age':?1}]}")
     List<MongoEntity> getMongoQueryAndOr(String name, Integer age);
 
     //$regex 此关键字是like

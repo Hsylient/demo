@@ -52,34 +52,34 @@ public interface MongoApi {
 
     //1.简单查询，2.and查询，3.and or 查询 ，4.模糊查询，5.分页查询，6.排序，7.索引 8.聚合其他想到了在补
     @Operation(summary = "简单查询", description = "简单查询")
-    @GetMapping("/v1/private/mongo/query")
+    @PostMapping("/v1/private/mongo/query")
     ReturnResult getMongoQuery(@RequestBody MongoDemoQuery query);
 
     @Operation(summary = "and查询", description = "and查询")
-    @GetMapping("/v1/private/mongo/queryAnd")
+    @PostMapping("/v1/private/mongo/queryAnd")
     ReturnResult getMongoQueryAnd(@RequestBody MongoDemoQuery query);
 
     @Operation(summary = "and or 查询", description = "and or 查询")
-    @GetMapping("/v1/private/mongo/queryAndOr")
+    @PostMapping("/v1/private/mongo/queryAndOr")
     ReturnResult getMongoQueryAndOr(@RequestBody MongoDemoQuery query);
 
     @Operation(summary = "模糊查询", description = "模糊查询")
-    @GetMapping("/v1/private/mongo/queryLike")
+    @PostMapping("/v1/private/mongo/queryLike")
     ReturnResult getMongoQueryLike(@RequestBody MongoDemoQuery query);
 
     @Operation(summary = "分页获取", description = "分页获取")
-    @GetMapping(value = "/v1/private/mongo/page")
+    @PostMapping(value = "/v1/private/mongo/page")
     ReturnResult page(@RequestBody MongoDemoQuery query);
 
     @Operation(summary = "排序", description = "排序")
-    @GetMapping(value = "/v1/private/mongo/sort")
+    @PostMapping(value = "/v1/private/mongo/sort")
     ReturnResult sort(@RequestBody MongoDemoQuery query);
 
     @Operation(summary = "索引", description = "索引")
-    @GetMapping(value = "/v1/private/mongo/index")
+    @PostMapping(value = "/v1/private/mongo/index")
     ReturnResult index(String keyName,Integer sort);
 
     @Operation(summary = "聚合", description = "聚合")
-    @GetMapping(value = "/v1/private/mongo/sum")
+    @PostMapping(value = "/v1/private/mongo/sum")
     ReturnResult sum(@RequestBody MongoDemoQuery query);
 }
