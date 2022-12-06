@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class RedisController implements RedisApi {
     @Override
+    @Recommit(ttl = 5)
     public ReturnResult<?> stringSet(RedisStringRequest body) {
         String key = body.getKey();
         if (StrUtil.isEmpty(key)) {
@@ -104,12 +105,18 @@ public class RedisController implements RedisApi {
     }
 
     public ReturnResult<?> hashPut(RedisHashRequest body) {
+        if (StrUtil.isEmpty(body.getKey())) {
+            return ReturnResult.fail("缺少key");
+        }
         RedisUtil.hPutAll(body.getKey(), body.getValueMap());
         return ReturnResult.success("put hash success");
     }
 
     @Override
     public ReturnResult<Map<Object, Object>> hashGet(String key) {
+        if (StrUtil.isEmpty(key)) {
+            return ReturnResult.fail("缺少key");
+        }
         Map<Object, Object> map = RedisUtil.hGetAll(key);
         return ReturnResult.success(map);
     }
@@ -121,6 +128,26 @@ public class RedisController implements RedisApi {
         }
         Long size = RedisUtil.delete(keys);
         return ReturnResult.success("删除成功, 成功条数：" + size);
+    }
+
+    @Override
+    public ReturnResult<?> expire(String key, Long expire, String unit) {
+        if (StrUtil.isEmpty(key)) {
+            return ReturnResult.fail("缺少key");
+        }
+        if (expire == null || expire < 0L) {
+            return ReturnResult.success(RedisUtil.persist(key));
+        }
+        return ReturnResult.success(RedisUtil.expire(key, expire, timeUnitConvert(unit)));
+    }
+
+    @Override
+    public ReturnResult<?> rename(String oldKey, String newKey) {
+        if (StrUtil.isEmpty(oldKey) || StrUtil.isEmpty(newKey)) {
+            return ReturnResult.fail("key不能为空");
+        }
+        RedisUtil.rename(oldKey, newKey);
+        return ReturnResult.success("重命名key成功");
     }
 
     private TimeUnit timeUnitConvert(String unit) {

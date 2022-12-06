@@ -6,6 +6,8 @@ import com.novax.ex.demo.open.model.request.RedisListRequest;
 import com.novax.ex.demo.open.model.request.RedisStringRequest;
 import com.novax.ex.demo.open.model.request.RedisZSetRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,11 +60,23 @@ public interface RedisApi {
     ReturnResult<?> hashPut(@RequestBody RedisHashRequest body);
     @Operation(summary = "hash 获取内容", description = "hash 获取内容")
     @GetMapping("/hash")
-    ReturnResult<Map<Object, Object>> hashGet(String key);
+    ReturnResult<Map<Object, Object>> hashGet(@Parameter(name = "key") String key);
 
     @Operation(summary = "通用删除方法", description = "通用删除方法")
     @DeleteMapping("/common")
     ReturnResult<?> delete(Set<String> keys);
+    @Operation(summary = "通用设置过期时间方法", description = "通用设置过期时间方法")
+    @Parameters({
+            @Parameter(name = "key", description = "key"),
+            @Parameter(name = "expire", description = ""),
+            @Parameter(name = "unit", description = "key"),
+    })
+    @PutMapping("/common/expire")
+    ReturnResult<?> expire(String key, Long expire, String unit);
+
+    @Operation(summary = "通用修改方法", description = "通用修改方法")
+    @PutMapping("/common")
+    ReturnResult<?> rename(String oldKey, String newKey);
 
     @Operation(summary = "防止重复提交（弱网环境下，或由client端发起的重复请求）", description = "防止重复提交")
     @PostMapping("/recommit")
