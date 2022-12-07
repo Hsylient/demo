@@ -1,6 +1,5 @@
 package com.novax.ex.common.base;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
