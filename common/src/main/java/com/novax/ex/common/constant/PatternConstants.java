@@ -1,7 +1,7 @@
 package com.novax.ex.common.constant;
 
 /**
- * Description: 正则表达式
+ * Description: 正则表达式 -- 需整理
  *
  * @author Deucalion@novax.email
  * @date 2022/9/4 16:50
