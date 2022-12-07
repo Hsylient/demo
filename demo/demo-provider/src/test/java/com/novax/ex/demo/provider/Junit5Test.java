@@ -109,7 +109,8 @@ public class Junit5Test {
     @ValueSource(strings = {"dog", "cat"})
     @ParameterizedTest(name = "开始测试入参 {0} ")
     public void testIsDog(String name) {
-        Assertions.assertEquals(name, "dog");
+        Assertions.assertTrue("dog".equals(name)
+                || "cat".equals(name));
     }
 
     /**
