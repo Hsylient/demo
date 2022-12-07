@@ -1,5 +1,6 @@
 package com.novax.ex.demo.provider;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RedissonClient;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,15 +16,14 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class RedissonTest {
 
-//    @Resource
-//    private RedissonClient redissonClient;
+    @Resource
+    private RedissonClient redissonClient;
 
     @Test
     public void test() {
-//        System.out.println("redissonClient = " + redissonClient);
-//        String id = redissonClient.getId();
-//        System.out.println("id = " + id);
-        System.out.println("Hello test");
+        System.out.println("redissonClient = " + redissonClient);
+        String id = redissonClient.getId();
+        Assertions.assertEquals(id.length(), 36);
     }
 
 }
