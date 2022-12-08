@@ -5,15 +5,17 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 public class DisruptorTest {
 
-    public static void main(String[] args) throws InterruptedException {
-//        int num = 10_000_000;
-        int num = 1;
+    @Test
+    public void test() throws InterruptedException {
+        int num = 10_000_000;
+//        int num = 1;
 
         // 创建消息工厂
         EventFactory<Message> eventFactory = new MessageFactory();

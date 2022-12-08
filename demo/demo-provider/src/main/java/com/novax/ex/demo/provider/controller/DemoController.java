@@ -7,7 +7,9 @@ import com.novax.ex.demo.infrastructure.entity.DemoEntity;
 import com.novax.ex.demo.open.api.DemoApi;
 import com.novax.ex.demo.open.model.request.DemoRequest;
 import com.novax.ex.demo.open.model.response.DemoReponse;
+import com.novax.ex.demo.provider.api.Demo1Api;
 import com.novax.ex.demo.provider.service.DemoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,11 +21,14 @@ import javax.annotation.Resource;
  * @author shaw
  * @date 6/24/22 14:57
  */
+@Slf4j
 @RestController
 public class DemoController implements DemoApi {
 
     @Resource
     private DemoService demoService;
+    @Resource
+    private Demo1Api demo1Api;
 
     @Override
     public ReturnResult publicGetV1(String arg) {
@@ -80,5 +85,12 @@ public class DemoController implements DemoApi {
     public ReturnResult modifyDemo(DemoRequest req) {
         DemoEntity entity = CopyUtils.copyObject(req, DemoEntity.class);
         return new ReturnResult<>(200, "成功", demoService.modify(entity));
+    }
+
+    @Override
+    public ReturnResult<?> testHeader(String language, String msg) {
+        ReturnResult<?> res = demo1Api.testHeader(language, msg);
+        log.info("res = {}", res);
+        return res;
     }
 }

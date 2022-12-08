@@ -23,4 +23,9 @@ public @interface Recommit {
      */
     int ttl() default 1;
 
+    /**
+     * 请求完是否删除key
+     */
+    boolean del() default false;
+
 }

@@ -53,4 +53,10 @@ public interface DemoApi {
     @Operation(summary = "修改（包含分布式事务）", description = "测试demo修改")
     @PutMapping("/v1/private/demo")
     ReturnResult modifyDemo(@RequestBody DemoRequest req);
+
+
+    @Operation(summary = "内部调用测试-带请求头的请求", description = "带请求头的请求")
+    @GetMapping("/v1/public/demo/header")
+    ReturnResult<?> testHeader(@RequestHeader("language") String language,
+                            @RequestParam String msg);
 }

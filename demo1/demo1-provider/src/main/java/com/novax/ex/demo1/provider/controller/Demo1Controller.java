@@ -55,4 +55,9 @@ public class Demo1Controller implements Demo1Api {
     public ReturnResult incr(Long id, Integer num) {
         return new ReturnResult<>(200, "成功", demo1Service.incr(id, num));
     }
+
+    @Override
+    public ReturnResult<?> testHeader(String language, String msg) {
+        return ReturnResult.success("language = " + language + ", msg = " + msg);
+    }
 }

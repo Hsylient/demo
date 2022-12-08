@@ -22,4 +22,10 @@ public interface Demo1Api {
     @PutMapping("/v1/private/demo1/incr/{id}")
     ReturnResult incr(@PathVariable("id") Long id,
                       @RequestParam("num") Integer num);
+
+
+    @Operation(summary = "public v1 demo1", description = "无需鉴权接口")
+    @GetMapping("/v1/public/demo1/header")
+    ReturnResult<?> testHeader(@RequestHeader("language") String language,
+                               @RequestParam String msg);
 }
