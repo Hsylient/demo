@@ -4,7 +4,9 @@ import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.demo.open.model.request.DemoRequest;
 import com.novax.ex.demo.open.model.response.DemoReponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -58,5 +60,5 @@ public interface DemoApi {
     @Operation(summary = "内部调用测试-带请求头的请求", description = "带请求头的请求")
     @GetMapping("/v1/public/demo/header")
     ReturnResult<?> testHeader(@RequestHeader("language") String language,
-                            @RequestParam String msg);
+                               @ParameterObject DemoRequest req);
 }

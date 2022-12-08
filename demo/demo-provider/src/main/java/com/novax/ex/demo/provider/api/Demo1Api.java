@@ -26,6 +26,6 @@ public interface Demo1Api {
 
     @Operation(summary = "public v1 demo1", description = "无需鉴权接口")
     @GetMapping("/v1/public/demo1/header")
-    ReturnResult<?> testHeader(@RequestHeader("language") String language,
-                               @RequestParam String msg);
+    ReturnResult<?> demo1Header(@RequestHeader("language") String language,
+                               @RequestParam DemoRequest msg);
 }

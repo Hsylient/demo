@@ -5,6 +5,7 @@ import com.novax.ex.demo1.open.model.request.DemoRequest;
 import com.novax.ex.demo1.open.model.response.DemoReponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -42,6 +43,6 @@ public interface Demo1Api {
 
     @Operation(summary = "public v1 demo", description = "无需鉴权接口")
     @GetMapping("/v1/public/demo1/header")
-    ReturnResult<?> testHeader(@RequestHeader("language") String language,
-                               @RequestParam String msg);
+    ReturnResult<?> demo1Header(@RequestHeader("language") String language,
+                                @ParameterObject DemoRequest req);
 }

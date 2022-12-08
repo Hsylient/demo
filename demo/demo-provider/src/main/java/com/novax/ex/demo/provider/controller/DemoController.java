@@ -88,8 +88,8 @@ public class DemoController implements DemoApi {
     }
 
     @Override
-    public ReturnResult<?> testHeader(String language, String msg) {
-        ReturnResult<?> res = demo1Api.testHeader(language, msg);
+    public ReturnResult<?> testHeader(String language, DemoRequest req) {
+        ReturnResult<?> res = demo1Api.demo1Header(language, req);
         log.info("res = {}", res);
         return res;
     }

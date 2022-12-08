@@ -57,7 +57,7 @@ public class Demo1Controller implements Demo1Api {
     }
 
     @Override
-    public ReturnResult<?> testHeader(String language, String msg) {
-        return ReturnResult.success("language = " + language + ", msg = " + msg);
+    public ReturnResult<?> demo1Header(String language, DemoRequest req) {
+        return ReturnResult.success("language = " + language + ", msg = " + req);
     }
 }
