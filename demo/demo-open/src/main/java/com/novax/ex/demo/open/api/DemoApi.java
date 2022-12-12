@@ -1,6 +1,7 @@
 package com.novax.ex.demo.open.api;
 
 import com.novax.ex.common.results.ReturnResult;
+import com.novax.ex.demo.open.model.query.DemoQuery;
 import com.novax.ex.demo.open.model.request.DemoRequest;
 import com.novax.ex.demo.open.model.response.DemoReponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -61,4 +62,9 @@ public interface DemoApi {
     @GetMapping("/v1/public/demo/header")
     ReturnResult<?> testHeader(@RequestHeader("language") String language,
                                @ParameterObject DemoRequest req);
+
+    @Operation(summary = "demo-get请求实体参数测试", description = "demo-get请求实体参数测试")
+    @GetMapping("/v1/public/demo/query")
+    ReturnResult<?> testQuery(@RequestHeader("language") String language,
+                               @ParameterObject DemoQuery req);
 }

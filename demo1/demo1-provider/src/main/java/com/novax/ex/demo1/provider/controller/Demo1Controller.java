@@ -1,8 +1,11 @@
 package com.novax.ex.demo1.provider.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.common.util.CopyUtils;
 import com.novax.ex.demo1.infrastructure.entity.DemoEntity;
+import com.novax.ex.demo1.open.model.query.DemoQuery;
+import com.novax.ex.demo1.open.model.query.DemoQuery2;
 import com.novax.ex.demo1.provider.service.Demo1Service;
 import com.novax.ex.demo1.open.api.Demo1Api;
 import com.novax.ex.demo1.open.model.request.DemoRequest;
@@ -59,5 +62,19 @@ public class Demo1Controller implements Demo1Api {
     @Override
     public ReturnResult<?> demo1Header(String language, DemoRequest req) {
         return ReturnResult.success("language = " + language + ", msg = " + req);
+    }
+
+    @Override
+    public ReturnResult<?> demo1Query(String language, DemoQuery2 req) {
+        return ReturnResult.success("GET language = " + language
+                + ", msg = " + req
+                + ", json = " + JSON.toJSONString(req));
+    }
+
+    @Override
+    public ReturnResult<?> demo1QueryPost(String language, DemoQuery req) {
+        return ReturnResult.success("POST language = " + language
+                + ", msg = " + req
+                + ", json = " + JSON.toJSONString(req));
     }
 }

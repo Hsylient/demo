@@ -16,13 +16,13 @@
     <packaging>jar</packaging>
     <properties>
         <java.version>8</java.version>
-        <fastjson.version>2.0.10</fastjson.version>
+        <fastjson.version>2.0.20</fastjson.version>
         <jwt.version>4.0.0</jwt.version>
-        <springdoc-openapi.version>1.6.9</springdoc-openapi.version>
+        <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <knife4j-springdoc-ui.version>3.0.3</knife4j-springdoc-ui.version>
         <commons-lang3.version>3.10</commons-lang3.version>
         <redisson.version>3.17.5</redisson.version>
-        <hutool.version>5.8.6</hutool.version>
+        <hutool.version>5.8.10</hutool.version>
     </properties>
 
     <dependencies>
@@ -43,13 +43,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <!-- jwt -->
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>${jwt.version}</version>
         </dependency>
 
         <!-- redis -->
@@ -94,10 +87,5 @@
             <version>${hutool.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>2.2</version>
-        </dependency>
     </dependencies>
 </project>

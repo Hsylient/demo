@@ -1,9 +1,12 @@
 package com.novax.ex.demo.provider.api;
 
 import com.novax.ex.common.results.ReturnResult;
+import com.novax.ex.demo.open.model.query.DemoQuery;
 import com.novax.ex.demo.open.model.request.DemoRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "demo1", contextId = "demo1Api")
@@ -27,5 +30,15 @@ public interface Demo1Api {
     @Operation(summary = "public v1 demo1", description = "无需鉴权接口")
     @GetMapping("/v1/public/demo1/header")
     ReturnResult<?> demo1Header(@RequestHeader("language") String language,
-                               @RequestParam DemoRequest msg);
+                                @SpringQueryMap DemoRequest msg);
+
+    @Operation(summary = "GET查询测试用（内部调用）", description = "GET查询测试用（内部调用）")
+    @GetMapping("/v1/public/demo1/query")
+    ReturnResult<?> demo1Query(@RequestHeader("language") String language,
+                               @SpringQueryMap DemoQuery2 req);
+
+    @Operation(summary = "POST查询测试用（内部调用）", description = "POST查询测试用（内部调用）")
+    @PostMapping("/v1/public/demo1/query")
+    ReturnResult<?> demo1QueryPost(@RequestHeader("language") String language,
+                                   @RequestBody DemoQuery req);
 }
