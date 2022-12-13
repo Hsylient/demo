@@ -43,7 +43,7 @@ public interface Demo1Api {
                       @RequestParam("num") Integer num);
 
 
-    @Operation(summary = "public v1 demo", description = "无需鉴权接口")
+    @Operation(summary = "demo1 header", description = "无需鉴权接口")
     @GetMapping("/v1/public/demo1/header")
     ReturnResult<?> demo1Header(@RequestHeader("language") String language,
                                 @ParameterObject DemoRequest req);
