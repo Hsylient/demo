@@ -2,17 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.novax.ex</groupId>
+    <parent>
+        <groupId>com.novax.ex</groupId>
+        <artifactId>novax</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
     <artifactId>demo</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
-        <relativePath/>
-    </parent>
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.6.3</spring-boot.version>
@@ -21,7 +18,6 @@
         <mysql-connector.version>8.0.29</mysql-connector.version>
         <mybatis.version>2.2.2</mybatis.version>
         <dynamic.version>3.4.1</dynamic.version>
-        <fastjson.version>2.0.8</fastjson.version><!-- fastjson版本 -->
     </properties>
     <!-- 子模块 -->
     <modules>
@@ -71,13 +67,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic.version}</version>
-            </dependency>
-
-            <!--fastjson -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

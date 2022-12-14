@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication(scanBasePackages = {"com.novax.ex.common","com.novax.ex.demo1"})
 @MapperScan("com.novax.ex.demo1.infrastructure.mapper")
 @EnableMongoRepositories("com.novax.ex.demo1.infrastructure.dao")
+@EnableFeignClients
 public class Demo1ProviderApplication {
 
     public static void main(String[] args) {
