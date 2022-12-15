@@ -58,10 +58,6 @@ public class ReturnResult<T> {
         return new ReturnResult<>(t);
     }
 
-    public static <T> ReturnResult<T> success(String msg) {
-        return new ReturnResult<>(StatusCode.SUCCESS, msg);
-    }
-
     public static <T> ReturnResult<T> success(String msg, T t) {
         return new ReturnResult<>(StatusCode.SUCCESS, msg, t);
     }

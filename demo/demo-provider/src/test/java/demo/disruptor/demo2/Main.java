@@ -6,6 +6,7 @@ import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +19,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class Main {
-    public static void main(String[] args) {
+
+    @Test
+    public void test() {
         int ringBufferSize = 1024 * 1024; // ringBuffer 大小，必须是 2 的 N 次方；
 //        int ringBufferSize = 4; // ringBuffer 大小，必须是 2 的 N 次方；
         Disruptor<LongEvent> disruptor = new Disruptor<>(

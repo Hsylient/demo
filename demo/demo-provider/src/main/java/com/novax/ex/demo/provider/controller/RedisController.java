@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class RedisController implements RedisApi {
     @Override
-    @Recommit(ttl = 5)
+    @Recommit(ttl = 60, del = true)
     public ReturnResult<?> stringSet(RedisStringRequest body) {
         String key = body.getKey();
         if (StrUtil.isEmpty(key)) {
