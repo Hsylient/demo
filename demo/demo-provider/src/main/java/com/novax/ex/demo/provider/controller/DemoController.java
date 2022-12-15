@@ -81,4 +81,5 @@ public class DemoController implements DemoApi {
         DemoEntity entity = CopyUtils.copyObject(req, DemoEntity.class);
         return new ReturnResult<>(200, "成功", demoService.modify(entity));
     }
+
 }

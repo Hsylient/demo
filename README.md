@@ -6,7 +6,7 @@
 * gateway：51002   后台网关
 * admin：51003   后管
 * user：51004   用户
-* third-party：51005   第三方服务
+* basics：51005   基础服务
 * otc：51006   C2C
 * wallet：51007   钱包
 * broker：51008   代理商/节点计划系统
