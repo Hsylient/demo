@@ -12,7 +12,7 @@ import java.util.Map;
  * @author shaoqiping
  * @date 6/16/21 1:46 PM
  */
-public interface BaseMapper{
+public interface BaseMapper <T extends BaseEntity>{
     /**
      *
      * Description: 新增
@@ -22,7 +22,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/16/21 1:47 PM
      */
-    <T extends BaseEntity> int insert(T t);
+    int insert(T t);
 
     /**
      *
@@ -33,7 +33,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/16/21 1:47 PM
      */
-    <T extends BaseEntity> int updateByPrimaryKey(T t);
+    int updateByPrimaryKey(T t);
 
     /**
      *
@@ -55,7 +55,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/16/21 1:48 PM
      */
-    <T extends BaseEntity> T selectByPrimaryKey(Long id);
+    T selectByPrimaryKey(Long id);
 
     /**
      *
@@ -66,7 +66,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/16/21 1:48 PM
      */
-    <T extends BaseEntity> List<T> selectList(Map<String, Object> params);
+    List<T> selectList(Map<String, Object> params);
 
     /**
      *
@@ -77,7 +77,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/16/21 1:49 PM
      */
-    <T extends BaseEntity> int insertSelective(T t);
+    int insertSelective(T t);
 
     /**
      *
@@ -88,7 +88,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/16/21 1:50 PM
      */
-    <T extends BaseEntity> int updateByPrimaryKeySelective(T t);
+    int updateByPrimaryKeySelective(T t);
 
     /**
      *
@@ -99,7 +99,7 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/30/21 3:36 PM
      */
-    Long count(PageUtil pageInfo);
+    Long count(PageUtil<T> pageInfo);
 
     /**
      *
@@ -110,6 +110,6 @@ public interface BaseMapper{
      * @author shaoqiping
      * @date 6/30/21 3:35 PM
      */
-    <T extends BaseEntity> List<T> selectPage(PageUtil pageInfo);
+    List<T> selectPage(PageUtil<T> pageInfo);
 
 }

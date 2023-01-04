@@ -12,7 +12,7 @@ spring:
         group: DEFAULT_GROUP
         timeout: 10000
         # 共享配置，多个配置逗号隔开，优先级：shared < ext < ${spring.application.name}-${profile}.${file-extension}
-        shared-configs: mysql-user.properties,redis.properties,mongodb.properties,rabbitmq.properties
+        shared-configs: mysql-demo.properties,redis.properties,mongodb.properties,rabbitmq.properties
         # 扩展配置
       #        ext-config[0]:
       #          data-id: common-mysql-trade.properties

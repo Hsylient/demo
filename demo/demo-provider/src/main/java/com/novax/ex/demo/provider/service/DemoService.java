@@ -1,5 +1,6 @@
 package com.novax.ex.demo.provider.service;
 
+import com.novax.ex.common.base.BaseService;
 import com.novax.ex.common.core.redis.RedisDistributedLocker;
 import com.novax.ex.common.util.CopyUtils;
 import com.novax.ex.demo.infrastructure.entity.DemoEntity;
@@ -23,21 +24,18 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class DemoService {
-
-    @Resource
-    private DemoMapper demoMapper;
+public class DemoService extends BaseService<DemoMapper, DemoEntity> {
     @Resource
     private Demo1Api demo1Api;
     @Resource
     private RedisDistributedLocker redisDistributedLocker;
 
     public DemoReponse getDemo(Long id) {
-        return CopyUtils.copyObject(demoMapper.selectByPrimaryKey(id), DemoReponse.class);
+        return CopyUtils.copyObject(mapper.selectByPrimaryKey(id), DemoReponse.class);
     }
 
     public void deleteDemo(Long id) {
-        demoMapper.deleteByPrimaryKey(id);
+        mapper.deleteByPrimaryKey(id);
     }
 
     public void redisLockDemo() {
@@ -70,12 +68,12 @@ public class DemoService {
 
 
     @GlobalTransactional(rollbackFor = Exception.class)
-    public Boolean modify(DemoEntity entity) {
+    public boolean modify(DemoEntity entity) {
         Integer age = entity.getAge();
         if (!Boolean.TRUE.equals(demo1Api.incr(entity.getId(), age).getData())) {
             throw new RuntimeException("incr fail");
         }
-        int update = demoMapper.update(entity);
+        int update = mapper.update(entity);
         if (update <= 0) {
             throw new RuntimeException("update fail");
         }
