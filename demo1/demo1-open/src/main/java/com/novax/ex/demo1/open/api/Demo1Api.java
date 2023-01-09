@@ -11,7 +11,6 @@ import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -66,7 +65,7 @@ public interface Demo1Api {
 
     @Operation(summary = "BingingResult测试-Post")
     @PostMapping("/v1/private/demo1/binging-result")
-    ReturnResult<?> bingingResult(@Valid @RequestBody DemoRequest dto, BindingResult valid);
+    ReturnResult<?> bingingResultPost(@Valid @RequestBody DemoRequest dto, BindingResult valid);
 
     @Operation(summary = "BingingResult测试-Get")
     @GetMapping("/v1/private/demo1/binging-result")

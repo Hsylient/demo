@@ -1,6 +1,7 @@
 package com.novax.ex.demo.provider.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.common.util.CopyUtils;
@@ -128,11 +129,11 @@ public class DemoController implements DemoApi {
     @Override
     public ReturnResult<?> bingingResult(HttpServletRequest request, DemoRequest dto) {
         log.info("req:{}", dto);
-        ReturnResult<?> returnResult = demo1Api.bingingResult(dto);
+        ReturnResult<?> returnResult = demo1Api.bingingResultPost(dto);
         log.info("res1:{}", returnResult);
         ReturnResult<?> returnResult2 = demo1Api.bingingResultGet(dto);
         log.info("res2:{}", returnResult2);
-        return ReturnResult.success(returnResult + ", " + returnResult2);
+        return ReturnResult.success(returnResult + StrUtil.CRLF + returnResult2);
     }
 
 

@@ -8,8 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @FeignClient(value = "demo1", contextId = "demo1Api")
 public interface Demo1Api {
     @Operation(summary = "新增", description = "测试demo新增")
@@ -45,7 +43,7 @@ public interface Demo1Api {
 
     @Operation(summary = "BingingResult测试-Post")
     @PostMapping("/v1/private/demo1/binging-result")
-    ReturnResult<?> bingingResult(@RequestBody DemoRequest dto);
+    ReturnResult<?> bingingResultPost(@RequestBody DemoRequest dto);
 
     @Operation(summary = "BingingResult测试-Get")
     @GetMapping("/v1/private/demo1/binging-result")

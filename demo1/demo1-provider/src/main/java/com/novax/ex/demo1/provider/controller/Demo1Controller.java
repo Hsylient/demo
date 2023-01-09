@@ -84,7 +84,7 @@ public class Demo1Controller implements Demo1Api {
     }
 
     @Override
-    public ReturnResult<?> bingingResult(DemoRequest dto, BindingResult valid) {
+    public ReturnResult<?> bingingResultPost(DemoRequest dto, BindingResult valid) {
         log.info("req={}", dto);
         if (valid.hasErrors()) {
             String message = Objects.requireNonNull(valid.getFieldError()).getDefaultMessage();
