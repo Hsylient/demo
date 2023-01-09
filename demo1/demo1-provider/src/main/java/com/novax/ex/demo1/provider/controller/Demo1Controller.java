@@ -10,9 +10,13 @@ import com.novax.ex.demo1.provider.service.Demo1Service;
 import com.novax.ex.demo1.open.api.Demo1Api;
 import com.novax.ex.demo1.open.model.request.DemoRequest;
 import com.novax.ex.demo1.open.model.response.DemoReponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * Description: UserController
@@ -20,6 +24,7 @@ import javax.annotation.Resource;
  * @author shaw
  * @date 6/24/22 14:57
  */
+@Slf4j
 @RestController
 public class Demo1Controller implements Demo1Api {
 
@@ -76,5 +81,28 @@ public class Demo1Controller implements Demo1Api {
         return ReturnResult.success("POST language = " + language
                 + ", msg = " + req
                 + ", json = " + JSON.toJSONString(req));
+    }
+
+    @Override
+    public ReturnResult<?> bingingResult(DemoRequest dto, BindingResult valid) {
+        log.info("req={}", dto);
+        if (valid.hasErrors()) {
+            String message = Objects.requireNonNull(valid.getFieldError()).getDefaultMessage();
+            log.info("demo1 表单提交有误：{}", message);
+            return ReturnResult.fail(message);
+        }
+        return ReturnResult.success(dto);
+    }
+
+
+    @Override
+    public ReturnResult<?> bingingResultGet(DemoRequest dto, BindingResult valid) {
+        log.info("req={}", dto);
+        if (valid.hasErrors()) {
+            String message = Objects.requireNonNull(valid.getFieldError()).getDefaultMessage();
+            log.info("demo1 表单提交有误：{}", message);
+            return ReturnResult.fail(message);
+        }
+        return ReturnResult.success(dto);
     }
 }

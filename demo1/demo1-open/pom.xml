@@ -10,5 +10,10 @@
     <artifactId>demo1-open</artifactId>
 
     <dependencies>
+        <!-- 表单校验使用 spring-boot-starter-validation -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
     </dependencies>
 </project>

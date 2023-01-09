@@ -4,10 +4,11 @@ import com.novax.ex.common.results.ReturnResult;
 import com.novax.ex.demo.open.model.query.DemoQuery;
 import com.novax.ex.demo.open.model.request.DemoRequest;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @FeignClient(value = "demo1", contextId = "demo1Api")
 public interface Demo1Api {
@@ -41,4 +42,13 @@ public interface Demo1Api {
     @PostMapping("/v1/public/demo1/query")
     ReturnResult<?> demo1QueryPost(@RequestHeader("language") String language,
                                    @RequestBody DemoQuery req);
+
+    @Operation(summary = "BingingResult测试-Post")
+    @PostMapping("/v1/private/demo1/binging-result")
+    ReturnResult<?> bingingResult(@RequestBody DemoRequest dto);
+
+    @Operation(summary = "BingingResult测试-Get")
+    @GetMapping("/v1/private/demo1/binging-result")
+    ReturnResult<?> bingingResultGet(@SpringQueryMap DemoRequest dto);
+
 }

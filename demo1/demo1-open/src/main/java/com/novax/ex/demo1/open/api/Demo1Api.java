@@ -8,7 +8,11 @@ import com.novax.ex.demo1.open.model.response.DemoReponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * Description: demo
@@ -58,4 +62,14 @@ public interface Demo1Api {
     @PostMapping("/v1/public/demo1/query")
     ReturnResult<?> demo1QueryPost(@RequestHeader("language") String language,
                                    @RequestBody DemoQuery req);
+
+
+    @Operation(summary = "BingingResult测试-Post")
+    @PostMapping("/v1/private/demo1/binging-result")
+    ReturnResult<?> bingingResult(@Valid @RequestBody DemoRequest dto, BindingResult valid);
+
+    @Operation(summary = "BingingResult测试-Get")
+    @GetMapping("/v1/private/demo1/binging-result")
+    ReturnResult<?> bingingResultGet(@ParameterObject @Valid DemoRequest dto, BindingResult valid);
+
 }

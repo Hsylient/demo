@@ -5,10 +5,11 @@ import com.novax.ex.demo.open.model.query.DemoQuery;
 import com.novax.ex.demo.open.model.request.DemoRequest;
 import com.novax.ex.demo.open.model.response.DemoReponse;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Description: demo
@@ -66,5 +67,12 @@ public interface DemoApi {
     @Operation(summary = "demo-get请求实体参数测试", description = "demo-get请求实体参数测试")
     @GetMapping("/v1/public/demo/query")
     ReturnResult<?> testQuery(@RequestHeader("language") String language,
-                               @ParameterObject DemoQuery req);
+                              @ParameterObject DemoQuery req);
+
+    @Operation(summary = "调用demo1-BingingResult测试")
+    @PostMapping("/v1/public/demo/binging-result")
+    ReturnResult<?> bingingResult(HttpServletRequest request,
+                                  @RequestBody DemoRequest dto);
+
+
 }

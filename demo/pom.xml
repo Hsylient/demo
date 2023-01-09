@@ -9,6 +9,12 @@
     </parent>
     <artifactId>demo</artifactId>
     <packaging>pom</packaging>
+    <!-- 子模块 -->
+    <modules>
+        <module>demo-infrastructure</module>
+        <module>demo-open</module>
+        <module>demo-provider</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
@@ -19,12 +25,6 @@
         <mybatis.version>2.2.2</mybatis.version>
         <dynamic.version>3.4.1</dynamic.version>
     </properties>
-    <!-- 子模块 -->
-    <modules>
-        <module>demo-infrastructure</module>
-        <module>demo-open</module>
-        <module>demo-provider</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.time.ZoneOffset;
 
 /**
@@ -123,4 +124,16 @@ public class DemoController implements DemoApi {
         log.info("resGet = {}", resGet);
         return ReturnResult.success(resGet + ", " + resPost);
     }
+
+    @Override
+    public ReturnResult<?> bingingResult(HttpServletRequest request, DemoRequest dto) {
+        log.info("req:{}", dto);
+        ReturnResult<?> returnResult = demo1Api.bingingResult(dto);
+        log.info("res1:{}", returnResult);
+        ReturnResult<?> returnResult2 = demo1Api.bingingResultGet(dto);
+        log.info("res2:{}", returnResult2);
+        return ReturnResult.success(returnResult + ", " + returnResult2);
+    }
+
+
 }
