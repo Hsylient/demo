@@ -147,7 +147,7 @@ public class MongoService {
         //    criteria.and("age").lt(query.getAge());
         //}
         Aggregation customerAgg = Aggregation.newAggregation(
-                Aggregation.project("name", "age", "money","_id"),//project 指定输出文档里的字段.
+                Aggregation.project("name", "age", "money","_id"),//project 指定输出文档和查询条件中使用的字段都需要包涵.
                 Aggregation.match(criteria),//match 选择要处理的文档，与fine()类似。
                 //group 根据key来分组文档
                 Aggregation.group("name")
