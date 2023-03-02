@@ -11,7 +11,8 @@
 		<module>common</module>
 		<module>demo</module>
 		<module>demo1</module>
-    </modules>
+		<module>demoflink</module>
+	</modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
