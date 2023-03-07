@@ -43,5 +43,5 @@ service.vgroupMapping.stock-tx-group=default
 ```
 
 ## 测试
-http://localhost:8080/v3/public/demo/seata/order/placeOrder/commit
-http://localhost:8080/v3/public/demo/seata/order/placeOrder/rollback
+http://localhost:8080/v3/public/demo/seata/business/placeOrder/commit
+http://localhost:8080/v3/public/demo/seata/business/placeOrder/rollback
