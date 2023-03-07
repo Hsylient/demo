@@ -12,6 +12,9 @@
 		<module>demo</module>
 		<module>demo1</module>
 		<module>demoflink</module>
+		<module>demo-seata-business</module>
+        <module>demo-seata-order</module>
+		<module>demo-seata-stock</module>
 	</modules>
 
     <properties>

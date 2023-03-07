@@ -1,0 +1,40 @@
+nacos-addr: 127.0.0.1:8848
+logging:
+  level:
+    io:
+      seata: debug
+spring:
+  application:
+    name: business
+  cloud:
+    nacos:
+      #配置中心
+      config:
+        server-addr: ${nacos-addr}
+        file-extension: properties
+        group: DEFAULT_GROUP
+        timeout: 10000
+        # 共享配置，多个配置逗号隔开，优先级：shared < ext < ${spring.application.name}-${profile}.${file-extension}
+        shared-configs: mysql.properties
+      #注册中心
+      discovery:
+        server-addr: ${nacos-addr}
+        group: DEFAULT_GROUP
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-tx-group
+  config:
+    type: nacos
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      dataId: "seata.properties"
+      username: 'nacos'
+      password: 'nacos'
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      username: 'nacos'
+      password: 'nacos'
