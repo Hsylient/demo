@@ -59,6 +59,17 @@
             <artifactId>flink-table-common</artifactId>
             <version>${flink.version}</version>
         </dependency>
+        <!--
+         JDBC 连接器允许使用 JDBC 驱动向任意类型的关系型数据库读取或者写入数据
+         如果在 DDL 中定义了主键，JDBC sink 将以 upsert 模式与外部系统交换 UPDATE/DELETE 消息；
+         否则，它将以 append 模式与外部系统交换消息且不支持消费 UPDATE/DELETE 消息。
+         -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-jdbc_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
         <!-- 以下包是相关边缘业务包 -->
         <!-- web ui 插件-->
         <dependency>

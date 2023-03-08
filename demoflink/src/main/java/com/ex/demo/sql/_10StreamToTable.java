@@ -49,6 +49,8 @@ public class _10StreamToTable {
                 "WHERE row_num <= 2";
         Table table = tableEnv.sqlQuery(sql);//转换为
         tableEnv.createTemporaryView("tmp", table);
+        tableEnv.executeSql("select * from tmp").print();//查询结果集
+        tableEnv.toChangelogStream(tableEnv.from("tmp")).print();//将结果集变为dataStream
         env.execute();
     }
     @Data
