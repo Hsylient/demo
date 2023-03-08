@@ -53,7 +53,7 @@ public class _06KafkaSourceTest {
                 // 它会把最新的消费位移提交到kafka的consumer_offsets中
                 // 就算把自动位移提交机制开启，KafkaSource依然不依赖自动位移提交机制
                 //（宕机重启时，优先从flink自己的状态中去获取偏移量<更可靠>）
-                .setProperty("auto.offset.commit", "true")
+                //.setProperty("auto.offset.commit", "true")
 
                 // 把本source算子设置成  BOUNDED属性（有界流）
                 // 将来本source去读取数据的时候，读到指定的位置，就停止读取并退出
