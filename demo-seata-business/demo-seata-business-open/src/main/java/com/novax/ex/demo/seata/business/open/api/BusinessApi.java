@@ -17,4 +17,7 @@ public interface BusinessApi {
 
     @GetMapping(path = "/v3/public/demo/seata/business/placeOrder/rollback")
     ReturnResult placeOrderRollback();
+
+    @GetMapping(path = "/v3/public/demo/seata/business/updateOrder")
+    ReturnResult updateOrder();
 }

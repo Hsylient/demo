@@ -2,6 +2,9 @@ package com.novax.ex.demo.seata.business.service;
 
 import com.novax.ex.demo.seata.business.api.OrderApi;
 import com.novax.ex.demo.seata.business.api.StockApi;
+import com.novax.ex.demo.seata.business.infrastructure.entity.Order;
+import com.novax.ex.demo.seata.business.infrastructure.mapper.OrderMapper;
+import io.seata.spring.annotation.GlobalLock;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,8 @@ public class BusinessService {
     private OrderApi orderApi;
     @Resource
     private StockApi stockApi;
+    @Resource
+    private OrderMapper orderMapper;
 
     /**
      * 下单：创建订单
@@ -35,5 +40,12 @@ public class BusinessService {
     public void rollback(String userId, String commodityCode, Integer count) {
         orderApi.placeOrderCommit();
         stockApi.deduct(commodityCode, count);
+    }
+
+    @GlobalLock(lockRetryInternal = 100, lockRetryTimes = 100)
+    public void updateOrder(){
+        Order order = new Order().setId(14);
+        order.setCount(3);
+        orderMapper.updateByPrimaryKeySelective(order);
     }
 }

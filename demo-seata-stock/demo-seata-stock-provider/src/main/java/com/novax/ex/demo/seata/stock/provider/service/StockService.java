@@ -3,8 +3,10 @@ package com.novax.ex.demo.seata.stock.provider.service;
 import com.novax.ex.demo.seata.stock.infrastructure.entity.Stock;
 import com.novax.ex.demo.seata.stock.infrastructure.mapper.StockMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author david
@@ -20,8 +22,9 @@ public class StockService{
      * @param commodityCode 商品码
      * @param count 数量
      */
-//    @Transactional(rollbackFor = Exception.class)
-    public void deduct(String commodityCode, int count) {
+    @Transactional()
+    public void deduct(String commodityCode, int count) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(5);
         if (commodityCode.equals("product-2")) {
             throw new RuntimeException("异常:模拟业务异常:stock branch exception");
         }

@@ -17,7 +17,7 @@ public class StockController implements StockApi {
     private StockService stockService;
 
     @Override
-    public ReturnResult deduct(String commodityCode, Integer count) {
+    public ReturnResult deduct(String commodityCode, Integer count) throws InterruptedException {
         stockService.deduct(commodityCode, count);
         return ReturnResult.success();
     }

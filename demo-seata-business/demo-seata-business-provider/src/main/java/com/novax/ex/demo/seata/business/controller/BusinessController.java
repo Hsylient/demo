@@ -6,6 +6,10 @@ import com.novax.ex.demo.seata.business.service.BusinessService;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author david
@@ -13,6 +17,9 @@ import javax.annotation.Resource;
  */
 @RestController
 public class BusinessController implements BusinessApi {
+    private static ExecutorService executorService = new ThreadPoolExecutor(
+            1, 1, 0L, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>()
+    );
     @Resource
     private BusinessService businessService;
 
@@ -35,5 +42,15 @@ public class BusinessController implements BusinessApi {
         // product-2 扣库存时模拟了一个业务异常
         businessService.rollback("1", "product-2", 1);
         return ReturnResult.success();
+    }
+
+    @Override
+    public ReturnResult updateOrder() {
+        executorService.execute(()-> run());
+        return ReturnResult.success();
+    }
+
+    private void run(){
+        businessService.updateOrder();
     }
 }

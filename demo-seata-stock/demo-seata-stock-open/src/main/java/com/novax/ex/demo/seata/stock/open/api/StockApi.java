@@ -13,5 +13,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public interface StockApi {
     @GetMapping(path = "/v3/private/demo/seata/stock/deduct")
-    ReturnResult deduct(String commodityCode, Integer count);
+    ReturnResult deduct(String commodityCode, Integer count) throws InterruptedException;
 }

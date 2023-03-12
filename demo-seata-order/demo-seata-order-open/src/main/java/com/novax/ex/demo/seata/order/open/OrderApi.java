@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public interface OrderApi {
     @GetMapping(path = "/v3/private/demo/seata/order/placeOrder/commit")
-    ReturnResult placeOrderCommit();
+    ReturnResult placeOrderCommit() throws InterruptedException;
 
     @GetMapping(path = "/v3/private/demo/seata/order/placeOrder/rollback")
-    ReturnResult placeOrderRollback();
+    ReturnResult placeOrderRollback() throws InterruptedException;
 }
