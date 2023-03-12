@@ -24,8 +24,8 @@ public class StockService{
      */
     @Transactional()
     public void deduct(String commodityCode, int count) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
         if (commodityCode.equals("product-2")) {
+            TimeUnit.SECONDS.sleep(3);
             throw new RuntimeException("异常:模拟业务异常:stock branch exception");
         }
 
