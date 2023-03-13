@@ -4,6 +4,7 @@ import com.novax.ex.common.results.ReturnResult;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author david
@@ -16,7 +17,7 @@ public interface BusinessApi {
     ReturnResult placeOrderCommit();
 
     @GetMapping(path = "/v3/public/demo/seata/business/placeOrder/rollback")
-    ReturnResult placeOrderRollback();
+    ReturnResult placeOrderRollback(@RequestParam(value = "id") String id);
 
     @GetMapping(path = "/v3/public/demo/seata/business/updateOrder")
     ReturnResult updateOrder();

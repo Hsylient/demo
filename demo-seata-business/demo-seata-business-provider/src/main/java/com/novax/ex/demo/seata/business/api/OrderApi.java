@@ -5,6 +5,7 @@ import com.novax.ex.common.results.ReturnResult;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author david
@@ -20,5 +21,5 @@ public interface OrderApi {
 
     @Operation(summary = "回滚")
     @GetMapping(path = "/v3/private/demo/seata/order/placeOrder/rollback")
-    ReturnResult placeOrderRollback();
+    ReturnResult placeOrderRollback(@RequestParam(value = "id") String id);
 }

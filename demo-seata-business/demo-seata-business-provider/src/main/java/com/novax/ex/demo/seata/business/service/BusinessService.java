@@ -31,14 +31,14 @@ public class BusinessService {
      * @param count
      */
     @GlobalTransactional
-    public void commit(String userId, String commodityCode, Integer count) {
-        orderApi.placeOrderCommit();
+    public void commit(String id, String userId, String commodityCode, Integer count) {
+        orderApi.placeOrderCommit(id);
         stockApi.deduct(commodityCode, count);
     }
 
     @GlobalTransactional(rollbackFor = Exception.class)
-    public void rollback(String userId, String commodityCode, Integer count) {
-        orderApi.placeOrderCommit();
+    public void rollback(String id, String userId, String commodityCode, Integer count) {
+        orderApi.placeOrderRollback(id);
         stockApi.deduct(commodityCode, count);
     }
 

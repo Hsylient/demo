@@ -44,5 +44,11 @@ service.vgroupMapping.stock-tx-group=default
 
 ## 测试
 http://localhost:8080/v3/public/demo/seata/business/placeOrder/commit
-http://localhost:8080/v3/public/demo/seata/business/placeOrder/rollback
+http://localhost:8080/v3/public/demo/seata/business/placeOrder/rollback?id=14
+http://localhost:8080/v3/public/demo/seata/business/placeOrder/rollback?id=15
 http://localhost:8080/v3/public/demo/seata/business/updateOrder
+
+## 附
+1. @GlobalTransactional 开启全局事务
+2. @GlobalLock 开启全局锁检查
+3. @GlobalLock + select for update，检查全局锁并重试

@@ -23,7 +23,7 @@ public class OrderController implements OrderApi {
      */
     @Override
     public ReturnResult placeOrderCommit() throws InterruptedException {
-        orderService.placeOrder("1", "product-1", 1);
+        orderService.placeOrder(null, "1", "product-1", 1);
         return ReturnResult.success();
     }
 
@@ -33,9 +33,9 @@ public class OrderController implements OrderApi {
      * @return
      */
     @Override
-    public ReturnResult placeOrderRollback() throws InterruptedException {
+    public ReturnResult placeOrderRollback(String id) throws InterruptedException {
         // product-2 扣库存时模拟了一个业务异常
-        orderService.placeOrder("1", "product-2", 1);
+        orderService.placeOrder(id, "1", "product-2", 1);
 
         return ReturnResult.success();
     }

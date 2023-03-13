@@ -4,6 +4,7 @@ import com.novax.ex.common.results.ReturnResult;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author david
@@ -16,5 +17,5 @@ public interface OrderApi {
     ReturnResult placeOrderCommit() throws InterruptedException;
 
     @GetMapping(path = "/v3/private/demo/seata/order/placeOrder/rollback")
-    ReturnResult placeOrderRollback() throws InterruptedException;
+    ReturnResult placeOrderRollback(@RequestParam(value = "id") String id) throws InterruptedException;
 }

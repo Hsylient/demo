@@ -29,7 +29,7 @@ public class BusinessController implements BusinessApi {
      * @return
      */
     public ReturnResult placeOrderCommit() {
-        businessService.commit("1", "product-1", 1);
+        businessService.commit(null, "1", "product-1", 1);
         return ReturnResult.success();
     }
 
@@ -38,9 +38,9 @@ public class BusinessController implements BusinessApi {
      *
      * @return
      */
-    public ReturnResult placeOrderRollback() {
+    public ReturnResult placeOrderRollback(String id) {
         // product-2 扣库存时模拟了一个业务异常
-        businessService.rollback("1", "product-2", 1);
+        businessService.rollback(id, "1", "product-2", 1);
         return ReturnResult.success();
     }
 
