@@ -32,7 +32,7 @@ public class BusinessService {
      */
     @GlobalTransactional
     public void commit(String id, String userId, String commodityCode, Integer count) {
-        orderApi.placeOrderCommit(id);
+        orderApi.placeOrderCommit();
         stockApi.deduct(commodityCode, count);
     }
 
