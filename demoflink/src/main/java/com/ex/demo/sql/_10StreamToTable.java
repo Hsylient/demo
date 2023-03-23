@@ -28,7 +28,7 @@ public class _10StreamToTable {
         //SingleOutputStreamOperator<User> operator = streamSource.flatMap(new myFlatMap());
         SingleOutputStreamOperator<User> map = streamSource.map(new myMap());
         //使用自定义对象流数据一定要注意有一个点，自定义对象是public static 修饰的，因为源码需要根据传入的对象进行数据访问映射出表的column名称，如果不设置为public 默认是protected不能由外部包进行访问会导致映射失败
-        tableEnv.createTemporaryView("tbl_user", map);//直接创建带表名的table
+        tableEnv.createTemporaryView("tbl_user", map);//直接创建带表名的table, 流变表
         //Table table = tableEnv.fromDataStream(operator);//直接使用dataStream创建table对象,后续直接使用api进行查询
         //tableEnv.executeSql("select * from tbl_user").print();
         //需求：按照sex分组，并找出年龄最大的两个人
@@ -50,7 +50,7 @@ public class _10StreamToTable {
         Table table = tableEnv.sqlQuery(sql);//转换为
         tableEnv.createTemporaryView("tmp", table);
         tableEnv.executeSql("select * from tmp").print();//查询结果集
-        tableEnv.toChangelogStream(tableEnv.from("tmp")).print();//将结果集变为dataStream
+        tableEnv.toChangelogStream(tableEnv.from("tmp")).print();//将结果集变为dataStream 表变流
         env.execute();
     }
     @Data
