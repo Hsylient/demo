@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.novax.ex.demo.sp.tcc.order.infrastructure.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.novax.ex.demo.sp.tcc.order.infrastructure.entity.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="commodity_code" jdbcType="VARCHAR" property="commodityCode" />
+    <result column="count" jdbcType="VARCHAR" property="count" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, user_id, commodity_code, count, money
+  </sql>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO order_tbl(user_id, commodity_code, count, money)
+    VALUES (#{userId}, #{commodityCode}, #{count}, #{money})
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.novax.ex.demo.sp.tcc.order.infrastructure.entity.Order">
+    <!--@mbg.generated-->
+    UPDATE order_tbl
+    <set>
+      <if test="userId != null">
+        user_id = #{userId},
+      </if>
+      <if test="commodityCode != null">
+        commodity_code = #{commodityCode},
+      </if>
+      <if test="count != null">
+        count = #{count},
+      </if>
+      <if test="money != null">
+        money = #{money},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <delete id="deleteByPrimaryKey" parameterType="int">
+    DELETE FROM order_tbl WHERE id=#{id}
+  </delete>
+</mapper>

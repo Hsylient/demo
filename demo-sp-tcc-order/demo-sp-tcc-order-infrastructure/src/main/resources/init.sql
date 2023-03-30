@@ -61,5 +61,5 @@ CREATE TABLE `undo_log`
   DEFAULT CHARSET = utf8;
 
 -- 初始化库存模拟数据
-INSERT INTO seata_stock.stock_tbl (id, commodity_code, count) VALUES (1, 'product-1', 9999999);
+INSERT INTO seata_stock.stock_tbl (id, commodity_code, count) VALUES (1, 'product-1', 1000);
 INSERT INTO seata_stock.stock_tbl (id, commodity_code, count) VALUES (2, 'product-2', 0);

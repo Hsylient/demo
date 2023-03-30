@@ -15,6 +15,9 @@
 		<module>demo-seata-business</module>
         <module>demo-seata-order</module>
 		<module>demo-seata-stock</module>
+		<module>demo-sp-tcc-business</module>
+		<module>demo-sp-tcc-order</module>
+		<module>demo-sp-tcc-stock</module>
 	</modules>
 
     <properties>
