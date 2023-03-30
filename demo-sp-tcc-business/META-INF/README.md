@@ -47,3 +47,7 @@ service.vgroupMapping.default-tx-group=default
 http://localhost:8081/v3/public/demo/seata/business/placeOrder/commit
 http://localhost:8081/v3/public/demo/seata/business/placeOrder/rollback?id=1
 http://localhost:8081/v3/public/demo/seata/business/updateOrder
+
+## 附
+1. 使用 @GlobalTransactional 开启开局事务；
+2. 使用 @LocalTCC 和 @TwoPhaseBusinessAction 开启分支事务；
