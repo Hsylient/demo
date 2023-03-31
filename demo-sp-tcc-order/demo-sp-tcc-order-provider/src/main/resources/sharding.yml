@@ -23,8 +23,6 @@ rules:
             - sharding_key_required_auditor
           allowHintDisable: true
     defaultShardingColumn: id
-    bindingTables:
-      - order_tbl
     shardingAlgorithms:
       order_tbl_inline:
         type: INLINE
