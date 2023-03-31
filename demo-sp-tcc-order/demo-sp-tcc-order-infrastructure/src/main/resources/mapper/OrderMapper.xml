@@ -13,9 +13,9 @@
     id, user_id, commodity_code, count, money
   </sql>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-    INSERT INTO order_tbl(user_id, commodity_code, count, money)
-    VALUES (#{userId}, #{commodityCode}, #{count}, #{money})
+  <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="false">
+    INSERT INTO order_tbl(id, user_id, commodity_code, count, money)
+    VALUES (#{id}, #{userId}, #{commodityCode}, #{count}, #{money})
   </insert>
 
   <update id="updateByPrimaryKeySelective" parameterType="com.novax.ex.demo.sp.tcc.order.infrastructure.entity.Order">

@@ -1,5 +1,6 @@
 package com.novax.ex.demo.sp.tcc.order.provider.tcc.impl;
 
+import com.novax.ex.common.util.Snowflake;
 import com.novax.ex.demo.sp.tcc.order.infrastructure.entity.Order;
 import com.novax.ex.demo.sp.tcc.order.infrastructure.mapper.OrderMapper;
 import com.novax.ex.demo.sp.tcc.order.provider.tcc.OrderAction;
@@ -39,12 +40,17 @@ public class OrderActionImpl implements OrderAction {
         int result = 0;
         if(StringUtils.isBlank(id)){
             BigDecimal orderMoney = new BigDecimal(count).multiply(new BigDecimal(5));
-            Order order = new Order().setUserId(userId).setCommodityCode(commodityCode).setCount(count).setMoney(orderMoney);
+            Order order = new Order()
+                    .setId(Snowflake.generateId())
+                    .setUserId(userId)
+                    .setCommodityCode(commodityCode)
+                    .setCount(count)
+                    .setMoney(orderMoney);
             order.setStatus("PREPARE");
             result = orderMapper.insert(order);
             BusinessActionContextUtil.addContext("orderId", order.getId());
         } else {
-            Integer orderId = Integer.valueOf(id);
+            Long orderId = Long.valueOf(id);
             Order order = new Order().setId(orderId).setCount(2);
             order.setStatus("PREPARE");
             result = orderMapper.updateByPrimaryKeySelective(order);
@@ -66,14 +72,19 @@ public class OrderActionImpl implements OrderAction {
             return true;
         }
 
-        // 修改数据或状态
         int result = 0;
-        String id = (String) context.getActionContext("id");
-        Integer orderId = (Integer) context.getActionContext("orderId");
-        Order order = new Order();
-        order.setId(orderId);
-        order.setStatus("COMMIT");
-        result = orderMapper.updateByPrimaryKeySelective(order);
+        try{
+            // 修改数据或状态
+            String id = (String) context.getActionContext("id");
+            Long orderId = (Long) context.getActionContext("orderId");
+            Order order = new Order();
+            order.setId(orderId);
+            order.setStatus("COMMIT");
+            result = orderMapper.updateByPrimaryKeySelective(order);
+        } catch (Exception e){
+            System.out.println(e);
+            return true;
+        }
 
         // 清除预留结果
         TccActionResult.removePrepareResult(xid);
@@ -100,7 +111,7 @@ public class OrderActionImpl implements OrderAction {
         // 删除订单或更新数据
         int result = 0;
         String id = (String) context.getActionContext("id");
-        Integer orderId = (Integer) context.getActionContext("orderId");
+        Long orderId = (Long) context.getActionContext("orderId");
         Order order = new Order();
         order.setId(orderId);
         if(StringUtils.isBlank(id)){

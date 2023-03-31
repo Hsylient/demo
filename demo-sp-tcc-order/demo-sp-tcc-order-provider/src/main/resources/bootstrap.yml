@@ -21,6 +21,9 @@ spring:
       discovery:
         server-addr: ${nacos-addr}
         group: DEFAULT_GROUP
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:sharding.yml
 seata:
   enabled: true
   application-id: ${spring.application.name}

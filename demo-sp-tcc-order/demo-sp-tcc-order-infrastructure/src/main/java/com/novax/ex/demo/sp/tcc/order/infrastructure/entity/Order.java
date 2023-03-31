@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 @Data
 public class Order{
-    private Integer id;
+    private Long id;
     private String userId;
     private String commodityCode;
     private Integer count;
